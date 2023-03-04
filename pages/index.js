@@ -2,8 +2,10 @@ import Head from 'next/head'
 import Header from '../components/Header'
 import Banner from '../components/Banner'
 import SmallCard from '../components/SmallCard';
+import MediumCard from '../components/MediumCard';
 
-export default function Home({ exploreData }) {
+
+export default function Home({ exploreData, cardsData }) {
   return (
     <div >
       <Head>
@@ -21,6 +23,14 @@ export default function Home({ exploreData }) {
             ))}
           </div>
         </section>
+        <section>
+          <h2 className='text-4xl font-semibold pb-5'>Live Anywhere</h2>
+          <div className='flex space-x-3 overflow-scroll scrollbar-hide p-3 -ml-3'>
+            {cardsData?.map(({ img, title }) => (
+              <MediumCard key={img} img={img} title={title} />
+            ))}
+          </div>
+        </section>
       </main>
     </div>
   )
@@ -28,9 +38,9 @@ export default function Home({ exploreData }) {
 
 
 export async function getStaticProps() {
-  const res = await fetch('http://localhost:3000/api/');
-  const exploreData = await res.json()
+  const exploreData = await fetch('http://localhost:3000/api/').then((res) => res.json())
+  const cardsData = await fetch('http://localhost:3000/api/cards').then((res) => res.json())
   return {
-    props: { exploreData }
+    props: { exploreData, cardsData }
   }
 }
