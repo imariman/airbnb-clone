@@ -32,7 +32,7 @@ export default function Home({ exploreData, cardsData }) {
             ))}
           </div>
         </section>
-        <section className='relative py-16 cursor-pointer'>
+        <section className='relative py-16'>
           <LargeCard img='https://assets.cntraveller.in/photos/632c2f4a67d00ef33fe822d4/master/pass/Airbnb.jpg'
             title='The Greatest Outdoors' description='Wishlists curated by Airbnb.' buttonText='Get Inspired' />
         </section>
